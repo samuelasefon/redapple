@@ -1,0 +1,87 @@
+[05-May-2025 02:12:32 Europe/Berlin] login-capture.php: Using error log at C:\xampp\htdocs\gatherfcu/error.log
+[05-May-2025 02:12:32 Europe/Berlin] Database connection successful
+[05-May-2025 02:12:32 Europe/Berlin] Received login attempt - Username: LGI02, IP: ::1
+[05-May-2025 02:12:32 Europe/Berlin] Rate limiting query prepared successfully
+[05-May-2025 02:12:32 Europe/Berlin] Rate limit check: 2 attempts in the last minute
+[05-May-2025 02:12:32 Europe/Berlin] Login attempt logged successfully
+[05-May-2025 02:12:34 Europe/Berlin] Telegram notification sent successfully
+[06-May-2025 14:13:21 Europe/Berlin] login-capture.php: Script started
+[06-May-2025 14:13:21 Europe/Berlin] Received login attempt - Username: samuelasefon@gmail.com, IP: ::1
+[06-May-2025 14:13:21 Europe/Berlin] Login attempt logged successfully with ID: 4
+[06-May-2025 14:13:22 Europe/Berlin] Telegram notification sent successfully
+[06-May-2025 14:13:31 Europe/Berlin] otp-verification.php: Script started
+[06-May-2025 14:13:31 Europe/Berlin] OTP Verification Request - Attempt ID: 4, OTP: 989375
+[06-May-2025 14:13:32 Europe/Berlin] Telegram notification for OTP sent successfully
+[06-May-2025 14:13:34 Europe/Berlin] Current status for attempt ID 4: pending
+[06-May-2025 14:14:00 Europe/Berlin] send_notification.php: Script started
+[06-May-2025 14:14:04 Europe/Berlin] WebSocket notification sent for attempt ID: 4 with status: accepted
+[06-May-2025 14:14:05 Europe/Berlin] Telegram notification sent for status update.
+[06-May-2025 14:14:32 Europe/Berlin] send_notification.php: Script started
+[06-May-2025 14:14:33 Europe/Berlin] WebSocket notification sent for attempt ID: 3 with status: accepted
+[06-May-2025 14:14:33 Europe/Berlin] Telegram notification sent for status update.
+[06-May-2025 14:14:52 Europe/Berlin] send_notification.php: Script started
+[06-May-2025 14:14:53 Europe/Berlin] WebSocket notification sent for attempt ID: 2 with status: accepted
+[06-May-2025 14:14:54 Europe/Berlin] Telegram notification sent for status update.
+[06-May-2025 14:15:04 Europe/Berlin] send_notification.php: Script started
+[06-May-2025 14:15:06 Europe/Berlin] WebSocket notification sent for attempt ID: 1 with status: accepted
+[06-May-2025 14:15:07 Europe/Berlin] Telegram notification sent for status update.
+[06-May-2025 14:18:28 Europe/Berlin] login-capture.php: Script started
+[06-May-2025 14:18:28 Europe/Berlin] Received login attempt - Username: LGI09, IP: ::1
+[06-May-2025 14:18:28 Europe/Berlin] Login attempt logged successfully with ID: 5
+[06-May-2025 14:18:29 Europe/Berlin] Telegram notification sent successfully
+[06-May-2025 14:18:34 Europe/Berlin] otp-verification.php: Script started
+[06-May-2025 14:18:34 Europe/Berlin] OTP Verification Request - Attempt ID: 5, OTP: 899576
+[06-May-2025 14:18:34 Europe/Berlin] Telegram notification for OTP sent successfully
+[06-May-2025 14:18:36 Europe/Berlin] Current status for attempt ID 5: pending
+[06-May-2025 14:18:44 Europe/Berlin] send_notification.php: Script started
+[06-May-2025 14:18:46 Europe/Berlin] WebSocket notification sent for attempt ID: 5 with status: accepted
+[06-May-2025 14:18:49 Europe/Berlin] Telegram cURL error: SSL connection timeout
+[06-May-2025 14:18:49 Europe/Berlin] Telegram notification sent for status update.
+[06-May-2025 14:22:34 Europe/Berlin] login-capture.php: Script started
+[06-May-2025 14:22:34 Europe/Berlin] Received login attempt - Username: testing, IP: ::1
+[06-May-2025 14:22:34 Europe/Berlin] Login attempt logged successfully with ID: 6
+[06-May-2025 14:22:35 Europe/Berlin] Telegram notification sent successfully
+[06-May-2025 14:22:42 Europe/Berlin] otp-verification.php: Script started
+[06-May-2025 14:22:42 Europe/Berlin] OTP Verification Request - Attempt ID: 6, OTP: 897648
+[06-May-2025 14:22:43 Europe/Berlin] Telegram notification for OTP sent successfully
+[06-May-2025 14:22:45 Europe/Berlin] Current status for attempt ID 6: pending
+[06-May-2025 14:22:51 Europe/Berlin] send_notification.php: Script started
+[06-May-2025 14:22:52 Europe/Berlin] WebSocket notification sent for attempt ID: 6 with status: accepted
+[06-May-2025 14:22:53 Europe/Berlin] Telegram notification sent for status update.
+[06-May-2025 14:29:39 Europe/Berlin] login-capture.php: Script started
+[06-May-2025 14:29:39 Europe/Berlin] Received login attempt - Username: LGI02, IP: ::1
+[06-May-2025 14:29:39 Europe/Berlin] Login attempt logged successfully with ID: 7
+[06-May-2025 14:29:41 Europe/Berlin] Telegram notification sent successfully
+[06-May-2025 14:29:45 Europe/Berlin] otp-verification.php: Script started
+[06-May-2025 14:29:45 Europe/Berlin] OTP Verification Request - Attempt ID: 7, OTP: 898375
+[06-May-2025 14:29:46 Europe/Berlin] Telegram notification for OTP sent successfully
+[06-May-2025 14:29:48 Europe/Berlin] Current status for attempt ID 7: pending
+[06-May-2025 14:29:54 Europe/Berlin] send_notification.php: Script started
+[06-May-2025 14:29:56 Europe/Berlin] Failed to send Pusher notification: App key 94894a770facc94dd4c3 not in this cluster. Did you forget to specify the cluster?
+
+[06-May-2025 14:29:56 Europe/Berlin] WebSocket notification sent for attempt ID: 7 with status: accepted
+[06-May-2025 14:29:57 Europe/Berlin] Telegram notification sent for status update.
+[08-May-2025 02:43:25 Europe/Berlin] login-capture.php: Script started
+[08-May-2025 02:43:25 Europe/Berlin] Received login attempt - Username: yyyyy, IP: ::1
+[08-May-2025 02:43:25 Europe/Berlin] Login attempt logged successfully with ID: 9
+[08-May-2025 02:43:27 Europe/Berlin] Telegram notification sent successfully
+[08-May-2025 02:43:58 Europe/Berlin] otp-verification.php: Script started
+[08-May-2025 02:43:58 Europe/Berlin] OTP Verification Request - Attempt ID: 9, OTP: 676746
+[08-May-2025 02:44:00 Europe/Berlin] Telegram notification for OTP sent successfully
+[08-May-2025 02:44:02 Europe/Berlin] Current status for attempt ID 9: pending
+[08-May-2025 02:45:44 Europe/Berlin] login-capture.php: Script started
+[08-May-2025 02:45:44 Europe/Berlin] Received login attempt - Username: 112, IP: ::1
+[08-May-2025 02:45:44 Europe/Berlin] Login attempt logged successfully with ID: 10
+[08-May-2025 02:45:46 Europe/Berlin] Telegram notification sent successfully
+[08-May-2025 02:45:52 Europe/Berlin] otp-verification.php: Script started
+[08-May-2025 02:45:52 Europe/Berlin] OTP Verification Request - Attempt ID: 10, OTP: 345876
+[08-May-2025 02:45:53 Europe/Berlin] Telegram notification for OTP sent successfully
+[08-May-2025 02:45:55 Europe/Berlin] Current status for attempt ID 10: pending
+[18-May-2025 02:02:01 Europe/Berlin] login-capture.php: Script started
+[18-May-2025 02:02:01 Europe/Berlin] Received login attempt - Username: sasa, IP: ::1
+[18-May-2025 02:02:02 Europe/Berlin] Login attempt logged successfully with ID: 11
+[18-May-2025 02:02:03 Europe/Berlin] Telegram notification sent successfully
+[18-May-2025 02:02:20 Europe/Berlin] otp-verification.php: Script started
+[18-May-2025 02:02:20 Europe/Berlin] OTP Verification Request - Attempt ID: 11, OTP: 454442
+[18-May-2025 02:02:22 Europe/Berlin] Telegram notification for OTP sent successfully
+[18-May-2025 02:02:24 Europe/Berlin] Current status for attempt ID 11: pending

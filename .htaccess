@@ -1,0 +1,47 @@
+# Custom error pages
+
+ErrorDocument 500 /redapplebank/error.html
+ErrorDocument 404 /redapplebank/error.html
+
+# PHP error settings
+
+<IfModule mod_php.c>
+    php_flag display_errors off
+    php_value error_reporting E_ALL
+    php_flag log_errors on
+    php_value error_log error.log
+</IfModule>
+
+# Enable CORS if needed
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>
+
+# Deny access to sensitive files
+
+<FilesMatch "^(error\.log|.\*\.sql|db_connect\.php|notification_config\.php)$">
+Order deny,allow
+Deny from all
+</FilesMatch>
+
+# Set default character set
+
+AddDefaultCharset UTF-8
+
+# Secure directory browsing
+
+Options -Indexes
+
+# Enable URL rewriting if needed
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /redapplebank/
+    
+    # Redirect HTTP to HTTPS (uncomment if needed)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
